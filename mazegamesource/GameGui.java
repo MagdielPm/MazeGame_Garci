@@ -171,24 +171,17 @@ public class GameGui extends JFrame implements ActionListener
               }}//end double for loop
              crearTimer();
              crearBarraDProgreso();
-             newPanel = new JPanel();
-             newPanel.setLayout(new GridLayout(fl.getMatrixSizeRow(),fl.getMatrixSizeColumn()));//set our panel for the game to the size of the matrix      
+             crearMaze();
              labelMatrix=new JLabel[fl.getMatrixSizeRow()][fl.getMatrixSizeColumn()];
-             newPanel.addKeyListener( new MyKeyHandler() );
         }//end if
         else if(event =="updateLoad")//every time the player moves the gui must be updated.
         {
             scrapMatrix = theArc.getUpdatedMatrix();//get the new matrix to be displayed from the architect
             remove(newPanel);//remove the old game
-            newPanel = new JPanel();
-            newPanel.setLayout(new GridLayout(fl.getMatrixSizeRow(),fl.getMatrixSizeColumn()));
-            newPanel.addKeyListener( new MyKeyHandler() );
+            crearMaze();
             newPanel.grabFocus();        
         }
-          for (int i = 0; i < labelMatrix.length; i++){
-              for (int j = 0; j < labelMatrix[i].length; j++){
-                  labelMatrix[i][j]=  mo=new mazeObject(scrapMatrix[i][j]);//add our maze images into the gui
-              }}//end double for loop
+          cargarMazeImg();
          cp.add(newPanel);
          remove(shagLabel);//remove the constructors initial background
          System.gc();//force java to clean up memory use.
@@ -196,6 +189,19 @@ public class GameGui extends JFrame implements ActionListener
          setVisible (true);
          newPanel.grabFocus();  
      }//end loadMatrixGui method
+
+	private void cargarMazeImg() {
+		for (int i = 0; i < labelMatrix.length; i++){
+              for (int j = 0; j < labelMatrix[i].length; j++){
+                  labelMatrix[i][j]=  mo=new mazeObject(scrapMatrix[i][j]);//add our maze images into the gui
+              }}//end double for loop
+	}
+
+	private void crearMaze() {
+		newPanel = new JPanel();
+		 newPanel.setLayout(new GridLayout(fl.getMatrixSizeRow(),fl.getMatrixSizeColumn()));//set our panel for the game to the size of the matrix      
+		 newPanel.addKeyListener( new MyKeyHandler() );
+	}
 
 	private void crearBarraDProgreso() {
 		progBarPanel = new JPanel();//panel for progress bar
