@@ -14,7 +14,7 @@ public class GameGui extends JFrame implements ActionListener
 
     public GameGui()
     {
-        super("Maze, a game of wondering"); //call super to initilize title bar of G.U.I.
+        super("MazeGame"); //call super to initilize title bar of G.U.I.
         cp=getContentPane();
         shagLabel = new JLabel("",new ImageIcon("mazegamesource//yeababyyea.jpg"),JLabel.LEFT);//GUI background for initial load
         cp.add(shagLabel);
