@@ -10,11 +10,13 @@ public class GameGui extends JFrame implements ActionListener
         new GameGui();
     }
 
+	private String parent;
+
     public GameGui()
     {
         super("Maze, a game of wondering"); //call super to initilize title bar of G.U.I.
         cp=getContentPane();
-        shagLabel = new JLabel("",new ImageIcon("yeababyyea.jpg"),JLabel.LEFT);//GUI background for initial load
+        shagLabel = new JLabel("",new ImageIcon("mazegamesource//yeababyyea.jpg"),JLabel.LEFT);//GUI background for initial load
         cp.add(shagLabel);
         //Add Exit & New Game Menu Items
         itemExit = new JMenuItem("Exit");
@@ -146,7 +148,8 @@ public class GameGui extends JFrame implements ActionListener
             int returnVal = chooser.showOpenDialog(this);
             if(returnVal == JFileChooser.APPROVE_OPTION) 
             {
-                fl.loadFile(chooser.getSelectedFile().getName());//load the file we need
+            	parent = chooser.getSelectedFile().getParent();
+            	fl.loadFile(parent+"\\"+chooser.getSelectedFile().getName());//load the file we need
                 theArc.setExit(fl.ExitXCord(),fl.ExitYCord());
                 loadMatrixGui("newLoad"); 
             }
@@ -194,8 +197,9 @@ public class GameGui extends JFrame implements ActionListener
         }
           for (int i = 0; i < labelMatrix.length; i++){
               for (int j = 0; j < labelMatrix[i].length; j++){
-                  labelMatrix[i][j]=  mo=new mazeObject(scrapMatrix[i][j]);//add our maze images into the gui
-              }}//end double for loop
+                  labelMatrix[i][j]=  mo =new mazeObject(scrapMatrix[i][j]);//add our maze images into the gui
+              }
+          }//end double for loop
          cp.add(newPanel);
          remove(shagLabel);//remove the constructors initial background
          System.gc();//force java to clean up memory use.
@@ -211,7 +215,7 @@ public class GameGui extends JFrame implements ActionListener
         {
             fileName+=".png";
             JLabel fancyLabel;
-            fancyLabel = new JLabel("",new ImageIcon(fileName),JLabel.LEFT);
+            fancyLabel = new JLabel("",new ImageIcon("mazegamesource//"+fileName),JLabel.LEFT);
             newPanel.add(fancyLabel);
         }
     }//end inner class
@@ -225,7 +229,7 @@ public class GameGui extends JFrame implements ActionListener
         catFileName+=01;//the next file to be loaded (number)
         String fileName="level"+catFileName+".maz";
         System.gc();
-        fl.loadFile(fileName);//load the file we need
+        fl.loadFile(parent+"\\"+fileName);//load the file we need
         scrapMatrix=fl.getGameMatrix();//get the new matrix from the fileloader for the next level.
         theArc.setExit(fl.ExitXCord(),fl.ExitYCord());
         loadMatrixGui("newLoad");         
@@ -244,7 +248,7 @@ public class GameGui extends JFrame implements ActionListener
     if(timeLeft==0 && ix==0)
     {
         timely.stop();
-        JLabel yousuckLabel = new JLabel("",new ImageIcon("yousuck.jpg"),JLabel.LEFT);
+        JLabel yousuckLabel = new JLabel("",new ImageIcon("mazegamesource//yousuck.jpg"),JLabel.LEFT);
         cp.add(yousuckLabel);
         remove(newPanel);
         remove(progBarPanel);
