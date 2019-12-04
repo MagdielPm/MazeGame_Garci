@@ -8,10 +8,11 @@ public class HighScore
     {
         try{
                String outData="PlayerName: "+name+" Total Time for Levels:"+min+":"+sec+ "(Minutes:Seconds)"+ "Level Reached:*" + level;
-               PrintWriter out = new PrintWriter(new FileOutputStream("scores.txt",true));
+               PrintWriter out = new PrintWriter(new FileOutputStream("mazegamesource\\scores.txt",true));
                out.println("");
                out.println(outData);
                out.close();
+               System.out.println("hola");
     }//prints the highscore data to scores.txt
         catch(Exception ex){
             System.out.println(ex);
