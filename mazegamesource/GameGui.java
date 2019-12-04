@@ -17,6 +17,7 @@ public class GameGui extends JFrame implements ActionListener
         super("Maze, a game of wondering"); //call super to initilize title bar of G.U.I.
         cp=getContentPane();
         shagLabel = new JLabel("",new ImageIcon("mazegamesource\\yeababyyea.jpg"),JLabel.LEFT);//GUI background for initial load
+        7.totalmerge
         cp.add(shagLabel);
         //Add Exit & New Game Menu Items
         itemExit = new JMenuItem("Exit");
@@ -155,8 +156,10 @@ public class GameGui extends JFrame implements ActionListener
             {
 
 
+
                 fl.loadFile("mazegamesource\\"+ chooser.getSelectedFile().getName());//load the file we need
                 7.totalmerge
+ 7.totalmerge
                 theArc.setExit(fl.ExitXCord(),fl.ExitYCord());
                 loadMatrixGui("newLoad"); 
             }
@@ -189,6 +192,7 @@ public class GameGui extends JFrame implements ActionListener
             newPanel.grabFocus();        
         }
           cargarMazeImg();
+ 7.totalmerge
          cp.add(newPanel);
          remove(shagLabel);//remove the constructors initial background
          System.gc();//force java to clean up memory use.
@@ -236,7 +240,7 @@ public class GameGui extends JFrame implements ActionListener
 
             fileName ="mazegamesource\\"+ fileName +".png";
             JLabel fancyLabel;
-            fancyLabel = new JLabel("",new ImageIcon(fileName),JLabel.LEFT);
+            fancyLabel = new JLabel("",new ImageIcon("mazegamesource//"+fileName),JLabel.LEFT);
             newPanel.add(fancyLabel);
         }
     }//end inner class
@@ -270,6 +274,7 @@ public class GameGui extends JFrame implements ActionListener
     {
         timely.stop();
         JLabel yousuckLabel = new JLabel("",new ImageIcon("mazegamesource\\yousuck.jpg"),JLabel.LEFT);
+ 7.totalmerge
         cp.add(yousuckLabel);
         remove(newPanel);
         remove(progBarPanel);

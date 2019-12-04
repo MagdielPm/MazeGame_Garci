@@ -103,7 +103,7 @@ public class TheArchitect extends JFrame
          public StupidAssMove(String event)
          {
              JFrame frame = new JFrame("Warning");
-             JOptionPane.showMessageDialog(frame, "You Stupid Ass, Ran into something did you?");
+             JOptionPane.showMessageDialog(frame, "Movimiento incorrecto");
          }
     }//end inner class
     
