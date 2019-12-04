@@ -13,35 +13,39 @@ public class ScoreGui extends JDialog implements ActionListener
     }
     public void ScoreGui()//the ScoreGui Method displays the scores in order from lowest to highest.
     {
+        JPanel listPane = new JPanel();
+        getContentPane().setLayout(new BoxLayout(listPane,BoxLayout.PAGE_AXIS));
+        String info = "";
         Container cp = getContentPane();
         JButton ok = new JButton("OK");
         ok.setActionCommand("OK");
         ok.addActionListener(this);
         int lineNum=0;
-        cp.add(ok,BorderLayout.SOUTH);
+        //cp.add(ok,BorderLayout.SOUTH);
              try{
                     String line = "";
                     String[] myScoreArray = new String[100];
                     for(int i=0; i<myScoreArray.length;i++)
                         myScoreArray[i]=" ";
                         String line1="";
-                    BufferedReader br1 = new BufferedReader(new InputStreamReader(new FileInputStream("scores.txt")));//read in the scores data
+                    BufferedReader br1 = new BufferedReader(new InputStreamReader(new FileInputStream("mazegamesource\\scores.txt")));//read in the scores data
                     int recordsCount=0;
                     while((line = br1.readLine()) != null) 
                     {
                         line = br1.readLine();
                         if(line!="")
                         {
+
+                            listPane.add(new JLabel(line));
+                            /*
                             recordsCount+=1;
                             int tempPOS = line.indexOf("*");//use the star to indicate the next charator is going to be the maze level which we will sort by.
                             String pos=line.substring(tempPOS+1);
                             int index = Integer.parseInt(pos);
                             if(myScoreArray[index] == " ")
                                 myScoreArray[index]=line;//add in the score to the array.
-                          else
-                          {
-                               for(int i=0; i<myScoreArray.length;i++)
-                               {
+                            else{
+                               for(int i=0; i<myScoreArray.length;i++) {
                                    if(index+i<myScoreArray.length)//prevent array out of bounds errors.
                                    {
                                    if(myScoreArray[index+i].equals(" "))
@@ -58,10 +62,12 @@ public class ScoreGui extends JDialog implements ActionListener
                                      if(myScoreArray[i]!=" ")
                                      {
                                          mainLabel=new JLabel(myScoreArray[i], JLabel.LEFT);//display the score on the screen
+                                         System.out.println(myScoreArray[i]);
                                          scorePanel.add(mainLabel);
                                      }
                                  }//end for loop
-                                cp.add(scorePanel); 
+                                cp.add(scorePanel);
+                                 */
                            }//end very first if
                      }//end first while loop            
                 }//end try
@@ -69,6 +75,7 @@ public class ScoreGui extends JDialog implements ActionListener
                     JFrame frame = new JFrame("Alert");
                     JOptionPane.showMessageDialog(frame, "Problem with scores.txt file.  Cant load high Scores");
                 }//end catch
+        setContentPane(listPane);
         pack();
         setVisible (true);
     }//end constructor
